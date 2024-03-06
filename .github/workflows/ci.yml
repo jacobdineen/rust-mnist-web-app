@@ -3,6 +3,8 @@ name: Build and Deploy WebAssembly to GitHub Pages
 on:
   push:
     branches:
+        # add gh-pages branch
+      - gh-pages
       - main  # Adjust to your branch as necessary
 
 jobs:
