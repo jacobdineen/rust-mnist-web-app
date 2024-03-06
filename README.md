@@ -1,6 +1,7 @@
-# Basic Workflow: From Training to Inference
+# Getting Started
+This project modifies some of the examples in the [burn](https://github.com/tracel-ai/burn) project to demonstrate how to use Burn to train and inference models.
+Namely, it bundles two of the examples in the burn project into a single web app.
 
-This example corresponds to the [book's guide](https://burn.dev/book/basic-workflow/).
 
 ## Example Usage
 
