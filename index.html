@@ -37,16 +37,62 @@
     />
 
     <style>
-      h1 {
-        padding: 15px;
+      body {
+        font-family: 'Roboto', sans-serif; /* Ensuring a consistent and modern font is used */
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa; /* A light grey background for slight contrast */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centers content vertically */
       }
-      th,
-      td {
-        padding: 5px;
+    
+      h1 {
+        padding: 20px;
+        color: #007bff; /* A pleasant blue for the heading */
+        font-size: 24px; /* Slightly larger font size for the heading */
+      }
+    
+      table {
+        margin-top: 20px; /* Adds a bit of space above the table */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        border-collapse: separate;
+        border-spacing: 0;
+        width: auto; /* Adjust table width according to content */
+      }
+    
+      th, td {
+        padding: 10px; /* More padding for a spacious look */
         text-align: center;
         vertical-align: middle;
+        border-bottom: 1px solid #dee2e6; /* A light line under each row for separation */
+      }
+    
+      th {
+        background-color: #f8f9fa; /* Slightly different background for headers */
+        color: #495057; /* Dark grey color for header text */
+      }
+    
+      canvas {
+        border: 1px solid #dee2e6; /* Consistent border color with table */
+        border-radius: 4px; /* Rounded corners for the canvas elements */
+      }
+    
+      #clear {
+        margin-top: 15px;
+        padding: 8px 16px;
+        background-color: #007bff; /* Button color */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    
+      #clear:hover {
+        background-color: #0056b3; /* Darker shade on hover for feedback */
       }
     </style>
+    
   </head>
   <body>
     <h1>Burn MNIST Inference Demo</h1>

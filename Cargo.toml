@@ -6,6 +6,12 @@ edition = "2018"
 license = "MIT" # Or your chosen license
 publish = false
 
+[workspace]
+members = [
+    "training",
+    "inference"
+]
+
 [features]
 ndarray = ["burn/ndarray"]
 ndarray-blas-accelerate = ["burn/ndarray", "burn/accelerate"]
