@@ -1,4 +1,6 @@
 # ignore all pkg and target folders
+/target
+/pkg
 inference/target/
 inference/pkg/
 training/target/
