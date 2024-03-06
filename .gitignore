@@ -1,10 +1,8 @@
 # ignore all pkg and target folders
 inference/target/
 inference/pkg/
-inference/src/
 training/target/
 training/pkg/
-training/src/
 inference/target/release/
 models/
 # ignore all log files
