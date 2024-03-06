@@ -12,5 +12,5 @@ cargo run --example train --release --features wgpu
 
 ### Web App
 ```bash
-./build-for-web.sh ndarray --serve  
-```# rust-mnist-web-app
+./build-for-web.sh ndarray && ./run_server.sh --serve
+```
