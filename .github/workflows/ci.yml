@@ -27,7 +27,7 @@ jobs:
     - name: Prepare Files for Deployment
       run: |
         mkdir web-publish
-        cp -r inference/inference/pkg/* web-publish/
+        cp -r ./inference/inference/pkg/* web-publish/
         cp index.html web-publish/
         cp index.js web-publish/
         cp -r models web-publish/
