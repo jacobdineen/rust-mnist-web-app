@@ -35,3 +35,7 @@ PKG_DIR="$CRATE_PATH/pkg"
 mkdir -p $PKG_DIR
 wasm-pack build $CRATE_PATH --out-dir $PKG_DIR --release --target web --no-typescript --no-default-features --features $FEATURES
 
+# copy PKG_DIR="$CRATE_PATH/pkg/inference.js" to root directory
+cp ./inference/$PKG_DIR/inference.js .
+# copy inference_bg.wasm to root directory
+cp ./inference/$PKG_DIR/inference_bg.wasm .
