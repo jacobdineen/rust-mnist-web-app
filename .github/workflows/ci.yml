@@ -5,6 +5,7 @@ on:
     branches:
       - main  # Adjust to your branch as necessary
       - gh-pages
+      - test
 
 jobs:
   build-and-deploy:
