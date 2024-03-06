@@ -6,7 +6,6 @@ inference/pkg/
 training/target/
 training/pkg/
 inference/target/release/
-models/
 # ignore all log files
 *.log
 
