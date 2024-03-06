@@ -3,9 +3,8 @@ name: Build and Deploy WebAssembly to GitHub Pages
 on:
   push:
     branches:
-        # add gh-pages branch
-      - gh-pages
       - main  # Adjust to your branch as necessary
+      - gh-pages
 
 jobs:
   build-and-deploy:
@@ -13,9 +12,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Install Rust
+    - name: Setup Rust
       uses: actions-rs/toolchain@v1
       with:
+        profile: minimal
         toolchain: stable
         override: true
 
@@ -24,8 +24,16 @@ jobs:
         chmod +x ./build-for-web.sh
         ./build-for-web.sh ndarray
 
+    - name: Prepare Files for Deployment
+      run: |
+        mkdir web-publish
+        cp -r inference/pkg/* web-publish/
+        cp index.html web-publish/
+        cp index.js web-publish/
+        cp -r models web-publish/
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: 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
-        publish_dir: ./inference/inference/pkg  # Adjust this to your output directory
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./web-publish
