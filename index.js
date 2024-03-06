@@ -131,44 +131,130 @@ export function $(id) {
  */
 export function chartConfigBuilder(chartEl) {
     Chart.register(ChartDataLabels);
+    const backgroundColors = [
+        'rgba(255, 99, 132, 0.2)', // red
+        'rgba(54, 162, 235, 0.2)', // blue
+        'rgba(255, 206, 86, 0.2)', // yellow
+        'rgba(75, 192, 192, 0.2)', // green
+        'rgba(153, 102, 255, 0.2)', // purple
+        'rgba(255, 159, 64, 0.2)', // orange
+        'rgba(199, 199, 199, 0.2)', // grey
+        '#247ABF', // original blue
+        'rgba(163, 204, 255, 0.2)', // light blue
+        'rgba(201, 203, 207, 0.2)'  // light grey
+    ];
+
     return new Chart(chartEl, {
         plugins: [ChartDataLabels],
         type: "bar",
         data: {
             labels: ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"],
-            datasets: [
-                {
-                    data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
-                    borderWidth: 0,
-                    fill: true,
-                    backgroundColor: "#247ABF",
-                },
-            ],
+            datasets: [{
+                data: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+                borderWidth: 1,
+                backgroundColor: backgroundColors,
+            }],
         },
         options: {
-            responsive: false,
+            responsive: true,
             maintainAspectRatio: false,
-            animation: true,
+            animation: {
+                duration: 1000,
+                easing: 'easeOutCubic'
+            },
             plugins: {
-                legend: {
-                    display: false,
-                },
+                legend: { display: false },
                 tooltip: {
                     enabled: true,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            label += new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(context.parsed.y);
+                            return label;
+                        }
+                    }
                 },
                 datalabels: {
-                    color: "white",
-                    formatter: function (value, context) {
-                        return toFixed(value, 2);
+                    color: '#36454F',
+                    anchor: function(context) {
+                        let value = context.dataset.data[context.dataIndex];
+                        return value < 0.95 ? 'end' : 'center';
                     },
+                    align: function(context) {
+                        let value = context.dataset.data[context.dataIndex];
+                        return value < 0.95 ? 'top' : 'center';
+                    },
+                    offset: function(context) {
+                        let value = context.dataset.data[context.dataIndex];
+                        return value < 0.95 ? 4 : 0;
+                    },
+                    formatter: function(value, context) {
+                        if(value < 1e-2) {
+                            return '< 0.01';
+                        } else {
+                            return new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+                        }
+                    },
+                    display: function(context) {
+                        // Avoid displaying labels with zero value
+                        return context.dataset.data[context.dataIndex] > 0;
+                    }
                 },
             },
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: 1.0,
+                    max: 1.05, // Adjusted max value to give more space
+                    suggestedMax: 1.0,
+                    title: {
+                        display: true,
+                        text: 'Probability', // y-axis label
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        drawBorder: true,
+                        color: function(context) {
+                            if (context.tick.value === 0) {
+                                return '#000000'; // Black color for zero
+                            } else {
+                                return 'rgba(0, 0, 0, 0.1)'; // Light grey for other grid lines
+                            }
+                        }
+                    },
+                    ticks: {
+                        // Add a callback for the ticks to ensure correct rounding
+                        callback: function(value) {
+                            return new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+                        }
+                    }
                 },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Digit', // x-axis label
+                        color: '#666',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        display: false,
+                        drawBorder: false
+                    }
+                }
             },
+            title: {
+                display: true,
+                text: 'Probability Results'
+            }
         },
     });
 }
