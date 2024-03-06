@@ -3,9 +3,7 @@ name: Build and Deploy WebAssembly to GitHub Pages
 on:
   push:
     branches:
-      - main  # Adjust to your branch as necessary
-      - gh-pages
-      - test
+      - "*"  # Adjust to your branch as necessary
 
 jobs:
   build-and-deploy:
