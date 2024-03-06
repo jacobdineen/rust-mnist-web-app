@@ -3,9 +3,6 @@
 # Define the path to the Rust crate that will be compiled to WebAssembly.
 CRATE_PATH="inference"
 
-# Default flag values
-SERVE=true
-
 # Parse command line arguments
 for arg in "$@"
 do
@@ -38,14 +35,3 @@ PKG_DIR="$CRATE_PATH/pkg"
 mkdir -p $PKG_DIR
 wasm-pack build $CRATE_PATH --out-dir $PKG_DIR --release --target web --no-typescript --no-default-features --features $FEATURES
 
-# If --serve flag is set, start a local HTTP server
-if [ "$SERVE" = true ] ; then
-    if ! command -v python3 &> /dev/null
-    then
-        echo "python3 could not be found. Running server requires python3."
-        exit
-    fi
-
-    echo "Running local python HTTP server on port 8083 ..."
-    python3 -m http.server 8086
-fi

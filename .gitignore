@@ -24,8 +24,6 @@ models/
 *.yaml
 *.yml
 
-# ignore all lock files
-Cargo.lock
 
 # Incremental compilation directories
 **/incremental/
