@@ -5,7 +5,7 @@ Namely, it bundles two of the examples in the burn project into a single web app
 
 ## Example Usage
 
-### Train the Model
+### Train the Model (locally)
 ```bash
 cargo run --example train --release --features wgpu
 ```
