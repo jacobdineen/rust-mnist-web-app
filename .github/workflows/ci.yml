@@ -23,7 +23,7 @@ jobs:
       run: |
             chmod +x ./build-for-web.sh && ./build-for-web.sh ndarray
             echo "Listing contents of inference/inference/pkg:"
-            ls -l
+            ls -al
 
     - name: Prepare Files for Deployment
       run: |
