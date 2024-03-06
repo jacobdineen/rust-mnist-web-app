@@ -21,8 +21,9 @@ jobs:
 
     - name: Build WebAssembly
       run: |
-        chmod +x ./build-for-web.sh
-        ./build-for-web.sh ndarray
+            chmod +x ./build-for-web.sh && ./build-for-web.sh ndarray
+            echo "Listing contents of inference/inference/pkg:"
+            ls -l
 
     - name: Prepare Files for Deployment
       run: |
