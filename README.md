@@ -14,3 +14,8 @@ cargo run --example train --release --features wgpu
 ```bash
 ./build-for-web.sh ndarray && ./run_server.sh --serve
 ```
+### Docker
+```bash
+docker build -t mnist-web-app .
+docker run -p 8086:8086 mnist-web-app
+```
